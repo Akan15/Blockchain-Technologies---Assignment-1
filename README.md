@@ -1,44 +1,86 @@
 # Blockchain-Technologies---Assignment-1
 
+# EtherWallet Project
+
 ## Project Description
-
-This project demonstrates the implementation of a smart contract to handle Ether transactions, including functionalities such as receiving funds, checking balance, and allowing the owner to withdraw funds. The project also involves setting up the Web3.js library, configuring Ganache for local blockchain testing, deploying the smart contract, and interacting with it using Metamask.
-
----
+EtherWallet is a simple smart contract-based application developed in Solidity for managing an Ethereum wallet. It allows the owner to store Ether and withdraw the full balance at any time. The project includes deployment and interaction scripts written in JavaScript using the Web3.js library.
 
 ## Features
+- **Deposit Ether**: Anyone can send Ether to the wallet.
+- **Check Balance**: View the current balance of the contract.
+- **Withdraw All Ether**: The contract owner can withdraw all funds.
 
-### Smart Contract Functionalities:
-- **Receive Ether**: Allows the smart contract to accept Ether tokens.
-- **Check Balance**: Enables users to view the current balance of the smart contract.
-- **Withdraw Funds**: The contract owner can withdraw all Ether stored in the contract.
+## Project Files
 
-### Environment Configuration:
-- Installation and setup of **Web3.js**.
-- Integration with **Ganache** for local blockchain or deployment on a public test network.
-- Configuration of **Metamask** for blockchain interaction.
+### Smart Contract
+**File**: `EtherWallet.sol`
+```solidity
+pragma solidity ^0.8.0;
 
-### Deployment:
-- Deploy the smart contract locally using **Ganache** or on a public Testnet.
+contract EtherWallet {
+    address public owner;
 
-### Interaction:
-- Execute contract functionalities via Web3.js scripts or Metamask interface.
+    constructor() {
+        owner = msg.sender;
+    }
 
----
+    receive() external payable {}
 
-## Prerequisites
+    function getBalance() public view returns (uint) {
+        return address(this).balance;
+    }
 
-- **Node.js**: Required to run JavaScript code and install dependencies.
-- **Ganache**: Local blockchain for Ethereum development and testing.
-- **Web3.js**: Ethereum JavaScript library for contract interaction.
-- **Metamask**: Browser wallet for Ethereum-based applications.
+    function withdrawAll() public {
+        require(msg.sender == owner, "Only owner can withdraw");
+        payable(owner).transfer(address(this).balance);
+    }
+}
 
----
+Deployment Script
+File: deploy.js
 
-## Installation and Setup
+Deploys the EtherWallet smart contract to the Ganache local blockchain.
+Interaction Script
+File: interact.js
 
-1. **Clone the Repository**:
-   ```bash
-   git clone <repository_url>
-   cd <repository_name>
+Interacts with the deployed contract, including checking the balance and withdrawing funds.
+Configuration Files
+package.json and package-lock.json specify dependencies and project metadata.
+Dependencies
+Node.js
+Web3.js library (v4.16.0)
+Ganache (local Ethereum blockchain)
+Setup Instructions
+Install Dependencies:
 
+bash
+Копировать код
+npm install
+Start Ganache: Launch the Ganache local blockchain and note the RPC server URL (default: http://127.0.0.1:7545).
+
+Deploy the Smart Contract:
+
+bash
+Копировать код
+node deploy.js
+The deployment script will output the contract address.
+
+Interact with the Smart Contract: Update the contract address in interact.js and run:
+
+bash
+Копировать код
+node interact.js
+Example Output
+Deploying:
+Копировать код
+Деплой осуществляется с аккаунта: 0xa7FE404aD9ECD3A4898c8518c7719b59f3aCa75f
+Контракт задеплоен по адресу: 0x7f1A684ca3Bfe08B54415A407714B9aB35548B68
+Interacting:
+Копировать код
+Баланс контракта: 1 ETH
+Средства выведены!
+
+Team Members:
+Darkhan Serikov
+Akan Zhansarin
+Meiirzhan Zhumabek
