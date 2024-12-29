@@ -39,6 +39,7 @@ contract EtherWallet {
 Deployment Script
 File: deploy.js
 
+
 Deploys the EtherWallet smart contract to the Ganache local blockchain.
 Interaction Script
 File: interact.js
@@ -46,41 +47,37 @@ File: interact.js
 Interacts with the deployed contract, including checking the balance and withdrawing funds.
 Configuration Files
 package.json and package-lock.json specify dependencies and project metadata.
+
+
 Dependencies
 Node.js
 Web3.js library (v4.16.0)
 Ganache (local Ethereum blockchain)
 Setup Instructions
-Install Dependencies:
 
-bash
-Копировать код
+
+Install Dependencies:
 npm install
 Start Ganache: Launch the Ganache local blockchain and note the RPC server URL (default: http://127.0.0.1:7545).
 
 Deploy the Smart Contract:
-
-bash
-Копировать код
 node deploy.js
 The deployment script will output the contract address.
 
 Interact with the Smart Contract: Update the contract address in interact.js and run:
-
-bash
-Копировать код
 node interact.js
 Example Output
+
+
 Deploying:
-Копировать код
 Деплой осуществляется с аккаунта: 0xa7FE404aD9ECD3A4898c8518c7719b59f3aCa75f
 Контракт задеплоен по адресу: 0x7f1A684ca3Bfe08B54415A407714B9aB35548B68
+
 Interacting:
-Копировать код
 Баланс контракта: 1 ETH
 Средства выведены!
 
 Team Members:
-Darkhan Serikov
-Akan Zhansarin
-Meiirzhan Zhumabek
+Darkhan Serikov SE-2330
+Akan Zhansarin SE-2322
+Meiirzhan Zhumabek SE-2330
